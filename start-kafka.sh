@@ -31,7 +31,13 @@ do
   fi
 done
 
-export JMX_PORT=9999
+export KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote= \
+-Dcom.sun.management.jmxremote.port=9998 \
+-Dcom.sun.management.jmxremote.ssl=false \
+-Dcom.sun.management.jmxremote.authenticate=false \
+-Dcom.sun.management.jmxremote.rmi.port=9999 \
+-Djava.rmi.server.hostname=192.168.99.100 \
+-Djava.net.preferIPv4Stack=true"
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
 KAFKA_SERVER_PID=$!
 
